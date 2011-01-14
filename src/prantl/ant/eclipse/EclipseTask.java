@@ -200,6 +200,7 @@ public class EclipseTask extends Task {
      *         In case of misconfiguration or errors.
      * @since Ant-Eclipse 1.0
      */
+    @Override
     public void execute() throws BuildException {
         if (output == null)
             output = new FileEclipseOutput(this);

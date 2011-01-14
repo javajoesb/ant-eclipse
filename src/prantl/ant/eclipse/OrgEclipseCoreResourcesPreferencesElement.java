@@ -39,7 +39,7 @@ public class OrgEclipseCoreResourcesPreferencesElement extends PreferencesElemen
 
     private static final String ENCODING_NAME = "encoding/<project>";
 
-    private static final HashSet ENCODING_VALUES = new HashSet();
+    private static final HashSet<String> ENCODING_VALUES = new HashSet<String>();
 
     /**
      * Returns the name of the package these preferences belong to.
@@ -115,6 +115,7 @@ public class OrgEclipseCoreResourcesPreferencesElement extends PreferencesElemen
      * 
      * @since Ant-Eclipse 1.0
      */
+    @Override
     public void validate() {
         if (!hasVariable(ENCODING_NAME))
             throw new BuildException("The attribute \"" + ENCODING_ATTRIBUTE

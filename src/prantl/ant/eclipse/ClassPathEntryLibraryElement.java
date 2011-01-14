@@ -21,20 +21,19 @@ package prantl.ant.eclipse;
 
 /**
  * Describes an element <tt>classpathentry</tt> under the element classpath,
- * specifically the kind "lib". The presence or one of the attributes <tt>path</tt> or
- * <tt>pathref</tt> is mandatory. This element is optional.
+ * specifically the kind "lib". The presence or one of the attributes
+ * <tt>path</tt> or <tt>pathref</tt> is mandatory. This element is optional.
  * 
  * @since Ant-Eclipse 1.0
  * @author Ferdinand Prantl &lt;prantl@users.sourceforge.net&gt;
  */
 public class ClassPathEntryLibraryElement extends ClassPathEntryBinaryElement {
 
-    /**
-     * Creates a new instance of the classpathentry-lib element.
-     * 
-     * @since Ant-Eclipse 1.0
-     */
-    public ClassPathEntryLibraryElement() {
-    }
-
+  /**
+   * Creates a new instance of the classpathentry-lib element.
+   * 
+   * @since Ant-Eclipse 1.0
+   */
+  public ClassPathEntryLibraryElement() {
+  }
 }

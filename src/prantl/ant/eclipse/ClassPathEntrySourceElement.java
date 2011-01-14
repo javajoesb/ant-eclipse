@@ -103,6 +103,7 @@ public class ClassPathEntrySourceElement extends ClassPathEntryPathElement {
      *         If an attribute <tt>pathref</tt> has been set.
      * @since Ant-Eclipse 1.0
      */
+    @Override
     public void setPath(String value) {
         explicit = true;
         super.setPath(value);
@@ -119,6 +120,7 @@ public class ClassPathEntrySourceElement extends ClassPathEntryPathElement {
      *         If an attribute <tt>pathref</tt> has been set.
      * @since Ant-Eclipse 1.0
      */
+    @Override
     public void setPathRef(Reference value) {
         if (!explicit)
             setPath(null);

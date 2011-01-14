@@ -39,7 +39,7 @@ public class OrgEclipseJdtUiPreferencesElement extends PreferencesElement {
 
     private static final String COMPLIANCE_DEFAULT = "user";
 
-    private static final HashSet COMPLIANCE_VALUES = new HashSet();
+    private static final HashSet<String> COMPLIANCE_VALUES = new HashSet<String>();
 
     /**
      * Returns the name of the package these preferences belong to.
@@ -111,6 +111,7 @@ public class OrgEclipseJdtUiPreferencesElement extends PreferencesElement {
      * 
      * @since Ant-Eclipse 1.0
      */
+    @Override
     public void validate() {
         if (!hasVariable(COMPLIANCE_NAME))
             setCompliance(COMPLIANCE_DEFAULT);

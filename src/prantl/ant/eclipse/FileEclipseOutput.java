@@ -41,6 +41,7 @@ import org.apache.tools.ant.util.FileUtils;
  */
 class FileEclipseOutput extends EclipseOutput {
 
+    public static final String ANT_FILE_PROPERTY = "ant.file";
     private EclipseTask task;
 
     /**
@@ -66,6 +67,7 @@ class FileEclipseOutput extends EclipseOutput {
      * @see EclipseOutput#isPreferencesUpToDate(String)
      * @since Ant-Eclipse 1.0
      */
+    @Override
     boolean isPreferencesUpToDate(String name) {
         return isFileUpToDate(".settings/" + name + ".prefs");
     }
@@ -78,6 +80,7 @@ class FileEclipseOutput extends EclipseOutput {
      * @see EclipseOutput#isProjectUpToDate()
      * @since Ant-Eclipse 1.0
      */
+    @Override
     boolean isProjectUpToDate() {
         return isFileUpToDate(".project");
     }
@@ -90,6 +93,7 @@ class FileEclipseOutput extends EclipseOutput {
      * @see EclipseOutput#isClassPathUpToDate()
      * @since Ant-Eclipse 1.0
      */
+    @Override
     boolean isClassPathUpToDate() {
         return isFileUpToDate(".classpath");
     }
@@ -104,6 +108,7 @@ class FileEclipseOutput extends EclipseOutput {
      * @see EclipseOutput#openPreferences(String)
      * @since Ant-Eclipse 1.0
      */
+    @Override
     InputStream openPreferences(String name) {
         return openFile(".settings/" + name + ".prefs");
     }
@@ -115,6 +120,7 @@ class FileEclipseOutput extends EclipseOutput {
      * @see EclipseOutput#openPreferences(String)
      * @since Ant-Eclipse 1.0
      */
+    @Override
     InputStream openProject() {
         return openFile(".project");
     }
@@ -126,6 +132,7 @@ class FileEclipseOutput extends EclipseOutput {
      * @see EclipseOutput#openClassPath()
      * @since Ant-Eclipse 1.0
      */
+    @Override
     InputStream openClassPath() {
         return openFile(".classpath");
     }
@@ -140,6 +147,7 @@ class FileEclipseOutput extends EclipseOutput {
      * @return Output stream for the created file.
      * @since Ant-Eclipse 1.0
      */
+    @Override
     OutputStream createPreferences(String name) {
         return createFile(".settings/" + name + ".prefs");
     }
@@ -151,6 +159,7 @@ class FileEclipseOutput extends EclipseOutput {
      * @return Output stream for the created file.
      * @since Ant-Eclipse 1.0
      */
+    @Override
     OutputStream createProject() {
         return createFile(".project");
     }
@@ -162,6 +171,7 @@ class FileEclipseOutput extends EclipseOutput {
      * @return Output stream for the created file.
      * @since Ant-Eclipse 1.0
      */
+    @Override
     OutputStream createClassPath() {
         return createFile(".classpath");
     }
@@ -169,7 +179,7 @@ class FileEclipseOutput extends EclipseOutput {
     private boolean isFileUpToDate(String name) {
         return !getEclipse().isUpdateAlways()
                 && FileUtils.getFileUtils().isUpToDate(
-                        resolveFile(task.getProject().getProperty("ant.file")),
+                        resolveFile(task.getProject().getProperty(ANT_FILE_PROPERTY)),
                         resolveFile(name));
     }
 

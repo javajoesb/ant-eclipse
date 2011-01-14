@@ -54,6 +54,7 @@ public class EclipseElement {
         /**
          * @see EnumeratedAttribute#getValues()
          */
+        @Override
         public String[] getValues() {
             return new String[] { "java", "aspectj" };
         }

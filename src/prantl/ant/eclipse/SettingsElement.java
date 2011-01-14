@@ -33,7 +33,7 @@ import org.apache.tools.ant.BuildException;
  */
 public class SettingsElement {
 
-    private Vector preferences = new Vector();
+    private Vector<PreferencesElement> preferences = new Vector<PreferencesElement>();
 
     /**
      * Creates a new instance of the settings element.
@@ -51,7 +51,7 @@ public class SettingsElement {
      * 
      * @return A list with instances of the descendants of the class PreferencesElement.
      */
-    public Vector getPreferences() {
+    public Vector<PreferencesElement> getPreferences() {
         return preferences;
     }
 
@@ -158,7 +158,7 @@ public class SettingsElement {
      */
     PreferencesElement getPreferences(String name) {
         for (int i = 0, size = preferences.size(); i != size; ++i) {
-            PreferencesElement preference = (PreferencesElement) preferences.get(i);
+            PreferencesElement preference = preferences.get(i);
             if (name.equals(preference.getName()))
                 return preference;
         }

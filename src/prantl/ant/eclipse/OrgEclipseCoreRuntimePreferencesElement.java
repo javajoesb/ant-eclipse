@@ -39,7 +39,7 @@ public class OrgEclipseCoreRuntimePreferencesElement extends PreferencesElement 
 
     private static final String LINESEPARATOR_NAME = "line.separator";
 
-    private static final HashMap LINESEPARATOR_VALUES = new HashMap();
+    private static final HashMap<String, String> LINESEPARATOR_VALUES = new HashMap<String, String>();
 
     /**
      * Returns the name of the package these preferences belong to.
@@ -87,7 +87,7 @@ public class OrgEclipseCoreRuntimePreferencesElement extends PreferencesElement 
      * @since Ant-Eclipse 1.0
      */
     public void setLineSeparator(String value) {
-        String lineSeparator = (String) LINESEPARATOR_VALUES.get(value.toLowerCase());
+        String lineSeparator = LINESEPARATOR_VALUES.get(value.toLowerCase());
         if (lineSeparator == null)
             throw new BuildException("The attribute \"" + LINESEPARATOR_ATTRIBUTE
                     + "\" (variable \"" + LINESEPARATOR_NAME
@@ -113,6 +113,7 @@ public class OrgEclipseCoreRuntimePreferencesElement extends PreferencesElement 
      * 
      * @since Ant-Eclipse 1.0
      */
+    @Override
     public void validate() {
         if (!hasVariable(LINESEPARATOR_NAME))
             throw new BuildException("The attribute \"" + LINESEPARATOR_ATTRIBUTE

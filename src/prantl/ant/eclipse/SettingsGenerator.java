@@ -65,13 +65,13 @@ final class SettingsGenerator {
             return;
         }
         checkPreferences(settings);
-        Vector entries = settings.getPreferences();
+        Vector<PreferencesElement> entries = settings.getPreferences();
         if (entries.size() == 0) {
             task.log("There were no preferences found.", Project.MSG_WARN);
             return;
         }
         for (int i = 0, size = entries.size(); i != size; ++i) {
-            PreferencesElement preferences = (PreferencesElement) entries.get(i);
+            PreferencesElement preferences = entries.get(i);
             preferences.validate();
             generatePreferences(preferences);
         }
@@ -98,12 +98,12 @@ final class SettingsGenerator {
             writer = new OutputStreamWriter(output.createPreferences(packageName),
                     "UTF-8");
             generateTimeStamp(writer);
-            Vector entries = preferences.getVariables();
+            Vector<VariableElement> entries = preferences.getVariables();
             if (entries.size() == 0)
                 task.log("There were no variables found for \"" + packageName + "\".",
                         Project.MSG_WARN);
             for (int i = 0, size = entries.size(); i != size; ++i)
-                generateVariable(writer, (VariableElement) entries.get(i));
+                generateVariable(writer, entries.get(i));
         } catch (UnsupportedEncodingException exception) {
             throw new BuildException("Encoder to UTF-8 is not supported.", exception);
         } catch (IOException exception) {
@@ -185,9 +185,9 @@ final class SettingsGenerator {
      * @since Ant-Eclipse 1.0
      */
     private PreferencesElement getPreferences(SettingsElement settings, String name) {
-        Vector entries = settings.getPreferences();
+        Vector<PreferencesElement> entries = settings.getPreferences();
         for (int i = 0, size = entries.size(); i != size; ++i) {
-            PreferencesElement preferences = (PreferencesElement) entries.get(i);
+            PreferencesElement preferences = entries.get(i);
             if (name.equals(preferences.getName()))
                 return preferences;
         }

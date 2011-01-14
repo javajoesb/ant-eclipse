@@ -19,8 +19,8 @@
 
 package prantl.ant.eclipse;
 
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 
 import org.apache.tools.ant.BuildException;
 
@@ -39,7 +39,7 @@ public class OrgEclipseJdtCorePreferencesElement extends PreferencesElement {
 
     private static final String COMPILERCOMPLIANCE_NAME = "org.eclipse.jdt.core.compiler.compliance";
 
-    private static final HashSet COMPILERCOMPLIANCE_VALUES = new HashSet();
+    private static final HashSet<String> COMPILERCOMPLIANCE_VALUES = new HashSet<String>();
 
     private static final String[] ORGECLIPSEJDTCORE_NAMES = {
             "org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode",
@@ -53,7 +53,7 @@ public class OrgEclipseJdtCorePreferencesElement extends PreferencesElement {
             "org.eclipse.jdt.core.compiler.problem.enumIdentifier",
             "org.eclipse.jdt.core.compiler.source" };
 
-    private static final Hashtable ORGECLIPSEJDTCORE_DEFAULTS = new Hashtable();
+    private static final HashMap<String, String[]> ORGECLIPSEJDTCORE_DEFAULTS = new HashMap<String, String[]>();
 
     /**
      * Returns the name of the package these preferences belong to.
@@ -77,6 +77,7 @@ public class OrgEclipseJdtCorePreferencesElement extends PreferencesElement {
         internalSetName(getPackageName());
         COMPILERCOMPLIANCE_VALUES.add("1.3");
         COMPILERCOMPLIANCE_VALUES.add("1.4");
+        COMPILERCOMPLIANCE_VALUES.add("1.5");
         COMPILERCOMPLIANCE_VALUES.add("5.0");
         COMPILERCOMPLIANCE_VALUES.add("6.0");
         ORGECLIPSEJDTCORE_DEFAULTS.put("1.3", new String[] { "enabled", // org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode
@@ -100,6 +101,17 @@ public class OrgEclipseJdtCorePreferencesElement extends PreferencesElement {
                 "warning", // org.eclipse.jdt.core.compiler.problem.assertIdentifier
                 "warning", // org.eclipse.jdt.core.compiler.problem.enumIdentifier
                 "1.3" // org.eclipse.jdt.core.compiler.source
+        });
+        ORGECLIPSEJDTCORE_DEFAULTS.put("1.5", new String[] { "enabled", // org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode
+                "1.5", // org.eclipse.jdt.core.compiler.codegen.targetPlatform
+                "preserve", // org.eclipse.jdt.core.compiler.codegen.unusedLocal
+                "1.5", // org.eclipse.jdt.core.compiler.compliance
+                "generate", // org.eclipse.jdt.core.compiler.debug.lineNumber
+                "generate", // org.eclipse.jdt.core.compiler.debug.localVariable
+                "generate", // org.eclipse.jdt.core.compiler.debug.sourceFile
+                "error", // org.eclipse.jdt.core.compiler.problem.assertIdentifier
+                "error", // org.eclipse.jdt.core.compiler.problem.enumIdentifier
+                "1.5" // org.eclipse.jdt.core.compiler.source
         });
         ORGECLIPSEJDTCORE_DEFAULTS.put("5.0", new String[] { "enabled", // org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode
                 "1.5", // org.eclipse.jdt.core.compiler.codegen.targetPlatform
@@ -172,13 +184,14 @@ public class OrgEclipseJdtCorePreferencesElement extends PreferencesElement {
      * 
      * @since Ant-Eclipse 1.0
      */
+    @Override
     public void validate() {
         VariableElement variable = getVariable(COMPILERCOMPLIANCE_NAME);
         if (variable == null)
             throw new BuildException("The attribute \"" + COMPILERCOMPLIANCE_ATTRIBUTE
                     + "\" (variable \"" + COMPILERCOMPLIANCE_NAME
                     + "\") was missing in the element \"" + ELEMENT + "\".");
-        String[] defaults = (String[]) ORGECLIPSEJDTCORE_DEFAULTS
+        String[] defaults = ORGECLIPSEJDTCORE_DEFAULTS
                 .get(variable.getValue());
         for (int i = 0; i < ORGECLIPSEJDTCORE_NAMES.length; ++i)
             internalAddVariable(ORGECLIPSEJDTCORE_NAMES[i], defaults[i]);

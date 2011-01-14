@@ -33,13 +33,13 @@ import org.apache.tools.ant.BuildException;
  */
 public class ClassPathElement {
 
-    private Vector sources = new Vector();
+    private Vector<ClassPathEntrySourceElement> sources = new Vector<ClassPathEntrySourceElement>();
 
-    private Vector libraries = new Vector();
+    private Vector<ClassPathEntryLibraryElement> libraries = new Vector<ClassPathEntryLibraryElement>();
 
     private ClassPathEntryContainerElement container = null;
 
-    private Vector variables = new Vector();
+    private Vector<ClassPathEntryVariableElement> variables = new Vector<ClassPathEntryVariableElement>();
 
     private ClassPathEntryOutputElement output = null;
 
@@ -58,7 +58,7 @@ public class ClassPathElement {
      * 
      * @return A list of instances of the class ClassPathEntrySourceElement.
      */
-    public Vector getSources() {
+    public Vector<ClassPathEntrySourceElement> getSources() {
         return sources;
     }
 
@@ -68,7 +68,7 @@ public class ClassPathElement {
      * 
      * @return A list of instances of the class ClassPathEntryLibraryElement.
      */
-    public Vector getLibraries() {
+    public Vector<ClassPathEntryLibraryElement> getLibraries() {
         return libraries;
     }
 
@@ -90,7 +90,7 @@ public class ClassPathElement {
      * 
      * @return A list of instances of the class ClassPathEntryVariableElement.
      */
-    public Vector getVariables() {
+    public Vector<ClassPathEntryVariableElement> getVariables() {
         return variables;
     }
 
@@ -114,7 +114,7 @@ public class ClassPathElement {
      */
     public ClassPathEntrySourceElement createSource() {
         sources.addElement(new ClassPathEntrySourceElement());
-        return (ClassPathEntrySourceElement) sources.lastElement();
+        return sources.lastElement();
     }
 
     /**
@@ -125,7 +125,7 @@ public class ClassPathElement {
      */
     public ClassPathEntryLibraryElement createLibrary() {
         libraries.addElement(new ClassPathEntryLibraryElement());
-        return (ClassPathEntryLibraryElement) libraries.lastElement();
+        return libraries.lastElement();
     }
 
     /**
@@ -149,7 +149,7 @@ public class ClassPathElement {
      */
     public ClassPathEntryVariableElement createVariable() {
         variables.addElement(new ClassPathEntryVariableElement());
-        return (ClassPathEntryVariableElement) variables.lastElement();
+        return variables.lastElement();
     }
 
     /**

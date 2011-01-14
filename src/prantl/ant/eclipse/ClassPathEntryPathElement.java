@@ -81,6 +81,7 @@ public class ClassPathEntryPathElement extends ClassPathEntryElement {
      *         If an attribute <tt>pathref</tt> has been set.
      * @since Ant-Eclipse 1.0
      */
+    @Override
     public void setPath(String value) {
         if (getPathRef() != null)
             throw new BuildException(
@@ -95,6 +96,7 @@ public class ClassPathEntryPathElement extends ClassPathEntryElement {
      * 
      * @since Ant-Eclipse 1.0
      */
+    @Override
     public void validate() {
         if (getPath() == null && pathRef == null)
             throw new BuildException(

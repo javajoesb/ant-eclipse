@@ -44,7 +44,7 @@ public abstract class PreferencesElement {
 
     private String name = null;
 
-    private Vector variables = new Vector();
+    private Vector<VariableElement> variables = new Vector<VariableElement>();
 
     /**
      * Creates a new instance of the element for preferences under the settings element.
@@ -115,7 +115,7 @@ public abstract class PreferencesElement {
      * 
      * @return A list with instances of the descendants of the class PreferencesElement.
      */
-    public Vector getVariables() {
+    public Vector<VariableElement> getVariables() {
         return variables;
     }
 
@@ -128,7 +128,7 @@ public abstract class PreferencesElement {
      */
     VariableElement internalCreateVariable() {
         variables.addElement(new VariableElement(this));
-        return (VariableElement) variables.lastElement();
+        return variables.lastElement();
     }
 
     /**
@@ -173,7 +173,7 @@ public abstract class PreferencesElement {
         if (!hasVariable(VERSION_NAME))
             setVersion(VERSION_VALUE);
         for (int i = 0, size = variables.size(); i != size; ++i) {
-            VariableElement variable = (VariableElement) variables.get(i);
+            VariableElement variable = variables.get(i);
             variable.validate();
         }
     }
@@ -222,7 +222,7 @@ public abstract class PreferencesElement {
      */
     VariableElement getVariable(String name) {
         for (int i = 0, size = variables.size(); i != size; ++i) {
-            VariableElement variable = (VariableElement) variables.get(i);
+            VariableElement variable = variables.get(i);
             if (name.equals(variable.getName()))
                 return variable;
         }
@@ -240,9 +240,9 @@ public abstract class PreferencesElement {
      *         passed set in the format "item1", "item2" and "item3".
      * @since Ant-Eclipse 1.0
      */
-    String getValidValues(Set set) {
+    String getValidValues(Set<String> set) {
         StringBuffer result = new StringBuffer();
-        Iterator iterator = set.iterator();
+        Iterator<String> iterator = set.iterator();
         for (int i = 0, size = set.size(); i != size; ++i) {
             result.append('\"');
             result.append(iterator.next());

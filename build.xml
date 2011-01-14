@@ -121,9 +121,9 @@
   <property name="classpath" value="${bin.dir}" />
 
   <!-- declare external tasks -->
-  <taskdef name="antdoc" classname="org.ed.pack.ant.AntDoc" />
+  <!--taskdef name="antdoc" classname="org.ed.pack.ant.AntDoc" />
   <taskdef name="jcsc" classname="rj.tools.jcsc.ant.JCSCTask"/>
-  <taskdef classpath="cobertura.jar" resource="tasks.properties" />
+  <taskdef classpath="cobertura.jar" resource="tasks.properties" /-->
 
   <!-- This task fails if some of the mandatory properties are missing
        or have invalid values. -->
