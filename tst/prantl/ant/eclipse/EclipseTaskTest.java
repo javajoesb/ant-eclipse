@@ -95,7 +95,7 @@ public class EclipseTaskTest extends TestCase {
      */
     static final class MemoryEclipseOutput extends EclipseOutput {
 
-        private Hashtable settings = new Hashtable();
+        private Hashtable<String, ByteArrayOutputStream> settings = new Hashtable<String, ByteArrayOutputStream>();
 
         private ByteArrayOutputStream project = null;
 
@@ -513,7 +513,7 @@ public class EclipseTaskTest extends TestCase {
     }
 
     private void assertEqualAllLines(String expected, String actual) {
-        HashSet expectedLines = new HashSet(Arrays.asList(split(expected, "\n")));
+        HashSet<String> expectedLines = new HashSet<String>(Arrays.asList(split(expected, "\n")));
         String[] actualLines = split(actual, "\n");
         for (int i = 0; i != actualLines.length; ++i)
             if (!expectedLines.remove(actualLines[i]))
